@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sistem_kesehatan_flutter/presentation/extension/theme.dart';
 
 class StyledButton extends StatelessWidget {
   final Function() actionButton;
@@ -32,6 +33,8 @@ class StyledButton extends StatelessWidget {
       height: buttonHeight ?? 45,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          foregroundColor: custGreyColor,
+          shadowColor: Colors.transparent,
           elevation: 0,
           backgroundColor: buttonColor,
           shape: RoundedRectangleBorder(
