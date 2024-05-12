@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sistem_kesehatan_flutter/presentation/pages/Auth/login_page.dart';
-import 'package:sistem_kesehatan_flutter/presentation/pages/Auth/signup_page.dart';
+import 'package:sistem_kesehatan_flutter/presentation/pages/pages.dart';
+import 'package:sistem_kesehatan_flutter/presentation/widgets/default_transition_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +13,16 @@ final _router = GoRouter(
     GoRoute(
       name: 'login',
       path: '/login',
-      builder: (BuildContext context, state) => const LoginPage(),
+      pageBuilder: (BuildContext context, state) {
+        return buildPageWithDefaultTransition(context: context, state: state, child: const LoginPage());
+      },
     ),
     GoRoute(
       name: 'signup',
       path: '/signup',
-      builder: (BuildContext context, state) => const SignUpPage(),
+      pageBuilder: (BuildContext context, state) {
+        return buildPageWithDefaultTransition(context: context, state: state, child: const SignUpPage());
+      },
     ),
   ],
   initialLocation: '/login',
