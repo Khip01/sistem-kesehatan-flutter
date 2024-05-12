@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/values.dart';
+
+import '../extension/values.dart';
 
 class LabelTextAuth extends StatelessWidget {
   final String labelText;
@@ -18,7 +19,9 @@ class LabelTextAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => textFieldFocusNode != null ? FocusScope.of(sendedContext).requestFocus(textFieldFocusNode) : null,
+      onTap: () => textFieldFocusNode != null
+          ? FocusScope.of(sendedContext).requestFocus(textFieldFocusNode)
+          : null,
       child: Text(
         labelText,
         style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/theme.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/values.dart';
+
+import '../extension/theme.dart';
+import '../extension/values.dart';
 
 class FooterTextAuth extends StatelessWidget {
   final String sentenceText;
