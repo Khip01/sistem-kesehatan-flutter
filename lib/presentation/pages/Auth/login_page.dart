@@ -1,15 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/strings.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/theme.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/footer-text-auth.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/label-text-auth.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/spacer-height.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/styled-button.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/text-field-auth.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/title-text-auth.dart';
+import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
+import 'package:sistem_kesehatan_flutter/presentation/widgets/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -183,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                         textColor: custBlackColor,
                         outlineButtonColor: custGreyColor,
                         buttonIconAsSvg: SvgPicture.asset('assets/icons/google.svg'),
-                      )
+                      ),
                     ],
                   ),
                 ),
