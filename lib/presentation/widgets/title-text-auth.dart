@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/theme.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/values.dart';
+
+import '../extension/theme.dart';
+import '../extension/values.dart';
 
 class TitleTextAuth extends StatelessWidget {
   final String headerText;
@@ -22,7 +23,10 @@ class TitleTextAuth extends StatelessWidget {
         children: [
           Text(
             headerText,
-            style: TextStyle(fontSize: headingTextSize, fontWeight: FontWeight.w600, color: custBlackColor),
+            style: TextStyle(
+                fontSize: headingTextSize,
+                fontWeight: FontWeight.w600,
+                color: custBlackColor),
           ),
           Text(
             bodyText,
