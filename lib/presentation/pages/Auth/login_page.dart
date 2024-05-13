@@ -6,12 +6,12 @@ import 'package:sistem_kesehatan_flutter/presentation/blocs/auth/auth_bloc.dart'
 
 import '../../extension/strings.dart';
 import '../../extension/theme.dart';
-import '../../widgets/footer-text-auth.dart';
-import '../../widgets/label-text-auth.dart';
-import '../../widgets/spacer-height.dart';
-import '../../widgets/styled-button.dart';
-import '../../widgets/text-field-auth.dart';
-import '../../widgets/title-text-auth.dart';
+import '../../widgets/footer_text_auth.dart';
+import '../../widgets/label_text_auth.dart';
+import '../../widgets/spacer_height.dart';
+import '../../widgets/styled_button.dart';
+import '../../widgets/text_field_auth.dart';
+import '../../widgets/title_text_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
