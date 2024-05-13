@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/widgets.dart';
+import 'package:sistem_kesehatan_flutter/presentation/blocs/auth/auth_bloc.dart';
+
+import '../../extension/strings.dart';
+import '../../extension/theme.dart';
+import '../../widgets/footer-text-auth.dart';
+import '../../widgets/label-text-auth.dart';
+import '../../widgets/spacer-height.dart';
+import '../../widgets/styled-button.dart';
+import '../../widgets/text-field-auth.dart';
+import '../../widgets/title-text-auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -121,19 +130,53 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                       const SpacerHeight(spaceHeight: 27),
-                      StyledButton(
-                        actionButton: () {
-                          if (emailController.text.isEmpty ||
-                              passController.text.isEmpty) {
-                            debugPrint('isi semua data terlebih dahulu!');
-                            return;
-                          }
-                          debugPrint(emailController.text);
-                          debugPrint(passController.text);
+                      BlocConsumer<AuthBloc, AuthState>(
+                        listener: (context, state) {
+                          state.maybeWhen(
+                            loginSuccess: (data) {
+                              context.goNamed('dashboard');
+                            },
+                            error: (message) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(message),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            },
+                            orElse: () {},
+                          );
                         },
-                        buttonText: textLogin,
-                        buttonColor: custPrimaryColor,
-                        textColor: custWhiteColor,
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            orElse: () {
+                              return StyledButton(
+                                actionButton: () {
+                                  if (emailController.text.isEmpty ||
+                                      passController.text.isEmpty) {
+                                    debugPrint(
+                                        'isi semua data terlebih dahulu!');
+                                  }
+                                  context.read<AuthBloc>().add(
+                                        AuthEvent.login(
+                                          emailController.text,
+                                          passController.text,
+                                        ),
+                                      );
+                                  debugPrint(emailController.text);
+                                  debugPrint(passController.text);
+                                },
+                                buttonText: textLogin,
+                                buttonColor: custPrimaryColor,
+                                textColor: custWhiteColor,
+                              );
+                            },
+                            loading: () {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            },
+                          );
+                        },
                       ),
                       const SpacerHeight(spaceHeight: 22),
                       Row(
