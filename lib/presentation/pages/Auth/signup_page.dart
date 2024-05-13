@@ -53,6 +53,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       textFieldController: emailController,
                       textFieldFocusNode: emailFocusNode,
                       isPasswordField: false,
+                      hintText: emailFormSignup,
                     ),
                     const SpacerHeight(spaceHeight: 12),
                     Padding(
@@ -69,6 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       textFieldController: phoneController,
                       textFieldFocusNode: phoneFocusNode,
                       isPasswordField: false,
+                      hintText: phoneFormSignup,
                     ),
                     const SpacerHeight(spaceHeight: 12),
                     Padding(
@@ -84,6 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       textFieldController: passController,
                       textFieldFocusNode: passFocusNode,
                       isPasswordField: true,
+                      hintText: hintPassword,
                     ),
                     const SpacerHeight(spaceHeight: 17),
                     Row(

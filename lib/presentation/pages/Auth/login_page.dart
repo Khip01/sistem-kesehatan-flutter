@@ -69,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                         textFieldController: emailController,
                         textFieldFocusNode: emailFocusNode,
                         isPasswordField: false,
+                        hintText: emailFormLogin,
                       ),
                       const SpacerHeight(spaceHeight: 12),
                       Padding(
@@ -84,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                         textFieldController: passController,
                         textFieldFocusNode: passFocusNode,
                         isPasswordField: true,
+                        hintText: hintPassword,
                       ),
                       const SpacerHeight(spaceHeight: 17),
                       Row(
