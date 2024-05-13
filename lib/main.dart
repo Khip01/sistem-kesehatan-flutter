@@ -7,6 +7,7 @@ import 'package:sistem_kesehatan_flutter/data/datasource/remote_datasources/auth
 import 'package:sistem_kesehatan_flutter/presentation/blocs/auth/auth_bloc.dart';
 import 'package:sistem_kesehatan_flutter/presentation/pages/dashboard/dashboard_page.dart';
 
+import 'presentation/widgets/default_transition_page.dart';
 import 'presentation/pages/Auth/login_page.dart';
 import 'presentation/pages/Auth/signup_page.dart';
 
@@ -21,22 +22,24 @@ final _router = GoRouter(
       name: 'login',
       path: '/login',
       pageBuilder: (BuildContext context, state) {
-        return FutureBuilder<bool>(
-          future: AuthLocalDataSource().isUserLoggedIn(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              // Tampilkan indikator loading jika sedang menunggu hasil Future
-              return const CircularProgressIndicator();
-            } else {
-              // Cek hasil Future dan kembalikan widget sesuai keadaan
-              if (snapshot.hasData && snapshot.data == true) {
-                initialRoute = '/dashboard';
-                return const DashboardPage();
+        return buildPageWithDefaultTransition(context: context, state: state, child:
+          FutureBuilder<bool>(
+            future: AuthLocalDataSource().isUserLoggedIn(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                // Tampilkan indikator loading jika sedang menunggu hasil Future
+                return const CircularProgressIndicator();
               } else {
-                return const LoginPage();
+                // Cek hasil Future dan kembalikan widget sesuai keadaan
+                if (snapshot.hasData && snapshot.data == true) {
+                  initialRoute = '/dashboard';
+                  return const DashboardPage();
+                } else {
+                  return const LoginPage();
+                }
               }
-            }
-          },
+            },
+          ),
         );
       },
     ),
