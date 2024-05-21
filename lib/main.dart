@@ -5,11 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/data/datasource/local_datasources/auth_local_datasources.dart';
 import 'package:sistem_kesehatan_flutter/data/datasource/remote_datasources/auth_remote_datasource.dart';
 import 'package:sistem_kesehatan_flutter/presentation/blocs/auth/auth_bloc.dart';
-import 'package:sistem_kesehatan_flutter/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:sistem_kesehatan_flutter/presentation/pages/base/base_page.dart';
 
 import 'presentation/widgets/default_transition_page.dart';
-import 'presentation/pages/Auth/login_page.dart';
-import 'presentation/pages/Auth/signup_page.dart';
+import 'presentation/pages/auth/login_page.dart';
+import 'presentation/pages/auth/signup_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,8 +32,8 @@ final _router = GoRouter(
               } else {
                 // Cek hasil Future dan kembalikan widget sesuai keadaan
                 if (snapshot.hasData && snapshot.data == true) {
-                  initialRoute = '/dashboard';
-                  return const DashboardPage();
+                  initialRoute = '/base';
+                  return const BasePage();
                 } else {
                   return const LoginPage();
                 }
@@ -51,9 +51,9 @@ final _router = GoRouter(
       },
     ),
     GoRoute(
-      name: 'dashboard',
-      path: '/dashboard',
-      builder: (BuildContext context, state) => const DashboardPage(),
+      name: 'base',
+      path: '/base',
+      builder: (BuildContext context, state) => const BasePage(),
     ),
   ],
   initialLocation: initialRoute,
