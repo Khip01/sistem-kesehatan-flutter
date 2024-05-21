@@ -38,12 +38,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SpacerHeight(spaceHeight: 56 + 41),
-                    const TitleTextAuth(headerText: headerTextSignup, bodyText: bodyTextSignup),
+                    const TitleTextAuth(headerText: "Create an account", bodyText: "Connect with your friends today!"),
                     const SpacerHeight(spaceHeight: 52),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 7),
                       child: LabelTextAuth(
-                        labelText: emailFormSignup,
+                        labelText: "",
                         sendedContext: context,
                         textFieldFocusNode: emailFocusNode,
                         labelTextColor: custPrimaryColor,
@@ -53,13 +53,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       textFieldController: emailController,
                       textFieldFocusNode: emailFocusNode,
                       isPasswordField: false,
-                      hintText: emailFormSignup,
+                      hintText: "Email Address",
                     ),
                     const SpacerHeight(spaceHeight: 12),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 7),
                       child: LabelTextAuth(
-                        labelText: phoneFormSignup,
+                        labelText: "Phone Number",
                         sendedContext: context,
                         textFieldFocusNode: phoneFocusNode,
                         labelTextColor: custPrimaryColor,
@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       textFieldController: phoneController,
                       textFieldFocusNode: phoneFocusNode,
                       isPasswordField: false,
-                      hintText: phoneFormSignup,
+                      hintText: "Phone Number",
                     ),
                     const SpacerHeight(spaceHeight: 12),
                     Padding(
@@ -143,7 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         debugPrint(phoneController.text);
                         debugPrint(passController.text);
                       },
-                      buttonText: textSignup,
+                      buttonText: "Sign Up",
                       buttonColor: custPrimaryColor,
                       textColor: custWhiteColor,
                     ),
@@ -193,8 +193,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               FooterTextAuth(
-                  sentenceText: footerTextSignup,
-                  pressableText: textLogin,
+                  sentenceText: "Already have an account ?  ",
+                  pressableText: "Login",
                   navigateTo: () => context.goNamed('login'))
             ],
           ),
