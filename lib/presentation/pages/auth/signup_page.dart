@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/widgets.dart';
+
+import '../../widgets/footer_text_auth.dart';
+import '../../widgets/label_text_auth.dart';
+import '../../widgets/spacer_height.dart';
+import '../../widgets/styled_button.dart';
+import '../../widgets/text_field_auth.dart';
+import '../../widgets/title_text_auth.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -106,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 side: const BorderSide(
                                   width: 0,
                                 ),
-                                fillColor: MaterialStateColor.resolveWith((states) => Colors.black),
+                                fillColor: WidgetStateColor.resolveWith((states) => Colors.black),
                                 splashRadius: 0,
                                 visualDensity: VisualDensity.compact,
                                 value: isRememberMe,

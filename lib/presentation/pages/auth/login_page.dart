@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                                   side: const BorderSide(
                                     width: 0,
                                   ),
-                                  fillColor: MaterialStateColor.resolveWith(
+                                  fillColor: WidgetStateColor.resolveWith(
                                       (states) => Colors.black),
                                   splashRadius: 0,
                                   visualDensity: VisualDensity.compact,

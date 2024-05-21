@@ -5,20 +5,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/presentation/blocs/auth/auth_bloc.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+class BasePage extends StatefulWidget {
+  const BasePage({super.key});
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<BasePage> createState() => _BasePageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _BasePageState extends State<BasePage> {
   @override
   void initState() {
     super.initState();
     // Navigasi ke dashboard setiap kali halaman diinisialisasi
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.goNamed('dashboard');
+      context.goNamed('base');
     });
   }
 
@@ -31,6 +31,7 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
+          color: Colors.green,
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
