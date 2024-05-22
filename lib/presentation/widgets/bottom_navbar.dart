@@ -27,10 +27,12 @@ class BottomNavbar extends StatelessWidget {
         ],
       ),
       height: 64,
-      width: double.maxFinite,
-      child: const Center(
-        child: Text("Ini Navbar"),
-      ),
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: itemsBottomNavbar,
+      )
     );
   }
 }
