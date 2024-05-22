@@ -9,4 +9,6 @@ Color custWhiteColor = const Color.fromRGBO(255, 255, 255, 1);
 Color custBlackThemeColor = const Color.fromRGBO(32, 33, 35, 1);
 Color custBlackColor = const Color.fromRGBO(0, 12, 20, 1);
 Color custGreyColor = const Color.fromRGBO(153, 158, 161, 1);
-Color custShadowColor = const Color.fromRGBO(210, 210, 210, 1.0);
+Color custShadowColor = const Color.fromRGBO(210, 210, 210, 1);
+Color custGenderMale = const Color.fromRGBO(74, 144, 226, 1);
+Color custGenderFemale = const Color.fromRGBO(255, 64, 129, 1);
