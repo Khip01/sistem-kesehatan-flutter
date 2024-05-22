@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
+import 'package:sistem_kesehatan_flutter/presentation/widgets/appbar_with_back.dart';
 import 'package:sistem_kesehatan_flutter/presentation/widgets/spacer_height.dart';
 
 class UserInfoPage extends StatelessWidget {
@@ -25,6 +27,14 @@ class UserInfoPage extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
+                  const SpacerHeight(spaceHeight: 20),
+                  AppbarWithBack(
+                      appBarTitleColor: custWhiteColor,
+                      appBarTitleText: "Profile",
+                      buttonBackColor: custWhiteColor,
+                      buttonBackIconColor: custSecondaryColor,
+                      buttonOnTapAction: () => context.goNamed('setting'),
+                  ),
                   const SpacerHeight(spaceHeight: 20),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 24),

@@ -5,6 +5,7 @@ import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
 import 'package:sistem_kesehatan_flutter/presentation/widgets/spacer_height.dart';
 
 import '../../blocs/auth/auth_bloc.dart';
+import '../../widgets/appbar_with_back.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -19,56 +20,29 @@ class SettingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SpacerHeight(spaceHeight: 20),
+              AppbarWithBack(
+                appBarTitleColor: custBlackColor,
+                appBarTitleText: "Settings",
+                buttonBackColor: custSecondaryColor,
+                buttonBackIconColor: custWhiteColor,
+                buttonOnTapAction: () => context.goNamed('base'),
+              ),
               const SpacerHeight(spaceHeight: 12),
               _cardUserInfo(context, () => context.goNamed('user_info')),
               const SpacerHeight(spaceHeight: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: Text(
-                      "Another Setting",
-                      style: TextStyle(
-                        fontSize: bodyTextSize,
-                        fontWeight: FontWeight.bold,
-                        color: custGreyColor,
-                      ),
-                    ),
-                  ),
-                  _listTileItem(
-                      context,
-                      "Setting 1",
-                      Icons.settings,
-                      (){},
-                      false
-                  ),
-                  _listTileItem(
-                      context,
-                      "Setting 2",
-                      Icons.settings,
-                      (){},
-                      false
-                  ),
-                  _listTileItem(
-                      context,
-                      "Setting 3",
-                      Icons.settings,
-                      (){},
-                      false
-                  ),
+                  _listTileTitle("About this app"),
+                  _listTileItem(context, "About", Icons.info, (){}, false),
+                  _listTileItem(context, "Connection", Icons.signal_cellular_connected_no_internet_4_bar, (){}, false),
                   const SpacerHeight(spaceHeight: 6),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16),
-                    child: Text(
-                      "Account",
-                      style: TextStyle(
-                        fontSize: bodyTextSize,
-                        fontWeight: FontWeight.bold,
-                        color: custGreyColor,
-                      ),
-                    ),
-                  ),
+                  _listTileTitle("Personalization"),
+                  _listTileItem(context, "Theme", Icons.settings_display, (){}, false),
+                  const SpacerHeight(spaceHeight: 6),
+                  _listTileTitle("Account"),
+                  _listTileItem(context, "About Your Credential", Icons.lock, (){}, false),
                   BlocListener<AuthBloc, AuthState>(
                     listener: (context, state) {
                       state.maybeWhen(
@@ -86,13 +60,8 @@ class SettingPage extends StatelessWidget {
                         orElse: () {},
                       );
                     },
-                    child: _listTileItem(
-                      context,
-                      "Logout",
-                      Icons.logout,
-                      () => context.read<AuthBloc>().add(const AuthEvent.logout()),
-                      true,
-                    ),
+                    child: _listTileItem(context, "Logout", Icons.logout,
+                      () => context.read<AuthBloc>().add(const AuthEvent.logout()), true,),
                   ),
                 ],
               ),
@@ -105,7 +74,7 @@ class SettingPage extends StatelessWidget {
 
   Widget _cardUserInfo(BuildContext context, Function() onTapAction) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         onTap: onTapAction,
@@ -164,9 +133,24 @@ class SettingPage extends StatelessWidget {
     );
   }
 
+  Widget _listTileTitle(String titleText){
+    return Padding(
+      padding: const EdgeInsets.only(left: 24),
+      child: Text(
+        titleText,
+        style: TextStyle(
+          fontSize: bodyTextSize,
+          fontWeight: FontWeight.bold,
+          color: custGreyColor,
+        ),
+      ),
+    );
+  }
+
   Widget _listTileItem(
       BuildContext context, String listTileTitle, IconData listTileIcon, Function() onTapAction, bool isDanger) {
     return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24),
       leading: Icon(listTileIcon, color: isDanger ? custRedErrorColor : custGreyColor,),
       title: Text(
         listTileTitle,
