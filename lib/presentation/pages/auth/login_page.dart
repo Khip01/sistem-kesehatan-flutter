@@ -52,14 +52,14 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const SpacerHeight(spaceHeight: 56 + 41),
                       const TitleTextAuth(
-                        headerText: headerTextLogin,
-                        bodyText: bodyTextLogin,
+                        headerText: "Hi, Welcome Back! 👋",
+                        bodyText: "Hello again, you’ve been missed!",
                       ),
                       const SpacerHeight(spaceHeight: 52),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 7),
                         child: LabelTextAuth(
-                          labelText: emailFormLogin,
+                          labelText: "Email",
                           sendedContext: context,
                           textFieldFocusNode: emailFocusNode,
                           labelTextColor: custPrimaryColor,
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                         textFieldController: emailController,
                         textFieldFocusNode: emailFocusNode,
                         isPasswordField: false,
-                        hintText: emailFormLogin,
+                        hintText: "Email",
                       ),
                       const SpacerHeight(spaceHeight: 12),
                       Padding(
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                                   side: const BorderSide(
                                     width: 0,
                                   ),
-                                  fillColor: MaterialStateColor.resolveWith(
+                                  fillColor: WidgetStateColor.resolveWith(
                                       (states) => Colors.black),
                                   splashRadius: 0,
                                   visualDensity: VisualDensity.compact,
@@ -136,7 +136,8 @@ class _LoginPageState extends State<LoginPage> {
                         listener: (context, state) {
                           state.maybeWhen(
                             loginSuccess: (data) {
-                              context.goNamed('dashboard');
+                              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                              context.goNamed('base');
                             },
                             error: (message) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -168,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                                   debugPrint(emailController.text);
                                   debugPrint(passController.text);
                                 },
-                                buttonText: textLogin,
+                                buttonText: "Login",
                                 buttonColor: custPrimaryColor,
                                 textColor: custWhiteColor,
                               );
@@ -227,8 +228,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 FooterTextAuth(
-                  sentenceText: footerTextLogin,
-                  pressableText: textSignup,
+                  sentenceText: "Don't have an account ?  ",
+                  pressableText: "Sign Up",
                   navigateTo: () => context.goNamed('signup'),
                 ),
               ],

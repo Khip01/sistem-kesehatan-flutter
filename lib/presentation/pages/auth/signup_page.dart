@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
-import 'package:sistem_kesehatan_flutter/presentation/widgets/widgets.dart';
+
+import '../../widgets/footer_text_auth.dart';
+import '../../widgets/label_text_auth.dart';
+import '../../widgets/spacer_height.dart';
+import '../../widgets/styled_button.dart';
+import '../../widgets/text_field_auth.dart';
+import '../../widgets/title_text_auth.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -38,12 +44,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SpacerHeight(spaceHeight: 56 + 41),
-                    const TitleTextAuth(headerText: headerTextSignup, bodyText: bodyTextSignup),
+                    const TitleTextAuth(headerText: "Create an account", bodyText: "Connect with your friends today!"),
                     const SpacerHeight(spaceHeight: 52),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 7),
                       child: LabelTextAuth(
-                        labelText: emailFormSignup,
+                        labelText: "",
                         sendedContext: context,
                         textFieldFocusNode: emailFocusNode,
                         labelTextColor: custPrimaryColor,
@@ -53,13 +59,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       textFieldController: emailController,
                       textFieldFocusNode: emailFocusNode,
                       isPasswordField: false,
-                      hintText: emailFormSignup,
+                      hintText: "Email Address",
                     ),
                     const SpacerHeight(spaceHeight: 12),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 7),
                       child: LabelTextAuth(
-                        labelText: phoneFormSignup,
+                        labelText: "Phone Number",
                         sendedContext: context,
                         textFieldFocusNode: phoneFocusNode,
                         labelTextColor: custPrimaryColor,
@@ -70,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       textFieldController: phoneController,
                       textFieldFocusNode: phoneFocusNode,
                       isPasswordField: false,
-                      hintText: phoneFormSignup,
+                      hintText: "Phone Number",
                     ),
                     const SpacerHeight(spaceHeight: 12),
                     Padding(
@@ -106,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 side: const BorderSide(
                                   width: 0,
                                 ),
-                                fillColor: MaterialStateColor.resolveWith((states) => Colors.black),
+                                fillColor: WidgetStateColor.resolveWith((states) => Colors.black),
                                 splashRadius: 0,
                                 visualDensity: VisualDensity.compact,
                                 value: isRememberMe,
@@ -143,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         debugPrint(phoneController.text);
                         debugPrint(passController.text);
                       },
-                      buttonText: textSignup,
+                      buttonText: "Sign Up",
                       buttonColor: custPrimaryColor,
                       textColor: custWhiteColor,
                     ),
@@ -193,8 +199,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               FooterTextAuth(
-                  sentenceText: footerTextSignup,
-                  pressableText: textLogin,
+                  sentenceText: "Already have an account ?  ",
+                  pressableText: "Login",
                   navigateTo: () => context.goNamed('login'))
             ],
           ),

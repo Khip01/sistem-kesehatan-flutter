@@ -1,18 +1,3 @@
-// Auth Login Page
-const String headerTextLogin = "Hi, Welcome Back! 👋";
-const String bodyTextLogin = "Hello again, you’ve been missed!";
-const String emailFormLogin = "Email";
-const String footerTextLogin = "Don't have an account ?  ";
-const String textLogin = "Login";
-
-// Auth SignUp Page
-const String headerTextSignup = "Create an account";
-const String bodyTextSignup = "Connect with your friends today!";
-const String emailFormSignup = "Email Address";
-const String phoneFormSignup = "Phone Number";
-const String footerTextSignup = "Already have an account ?  ";
-const String textSignup = "Sign Up";
-
 // Auth Global
 const String passForm = "Password";
 const String hintEmail = "Enter your email";
@@ -24,4 +9,4 @@ const String orWith = "Or With";
 const String googleText = "Google";
 
 // Url API
-const String baseUrl = "http://10.0.2.2:8000";
+const String baseUrl = "http://192.168.64.59:8000";
