@@ -220,7 +220,8 @@ class _LoginPageState extends State<LoginPage> {
                         buttonColor: custWhiteColor,
                         textColor: custBlackColor,
                         outlineButtonColor: custGreyColor,
-                        buttonIconAsSvg: SvgPicture.asset('assets/icons/google.svg'),
+                        buttonIconAsSvg:
+                            SvgPicture.asset('assets/icons/google.svg'),
                       ),
                     ],
                   ),

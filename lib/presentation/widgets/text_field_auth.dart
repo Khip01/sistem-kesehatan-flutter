@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../extension/strings.dart';
 import '../extension/theme.dart';
 import '../extension/values.dart';
 
@@ -9,6 +8,7 @@ class TextFieldAuth extends StatefulWidget {
   final String? prefixText;
   final bool isPasswordField;
   final TextEditingController textFieldController;
+  final String hintText;
 
   const TextFieldAuth({
     super.key,
@@ -16,6 +16,7 @@ class TextFieldAuth extends StatefulWidget {
     this.prefixText,
     required this.isPasswordField,
     required this.textFieldController,
+    required this.hintText,
   });
 
   @override
@@ -72,7 +73,7 @@ class _TextFieldAuthState extends State<TextFieldAuth> {
               : null,
           contentPadding:
               const EdgeInsets.symmetric(vertical: 10, horizontal: 13),
-          hintText: hintEmail,
+          hintText: widget.hintText,
         ),
       );
     });
