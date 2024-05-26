@@ -5,15 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/data/datasource/local_datasources/auth_local_datasources.dart';
 import 'package:sistem_kesehatan_flutter/data/datasource/remote_datasources/auth_remote_datasource.dart';
+import 'package:sistem_kesehatan_flutter/data/datasource/remote_datasources/doctor_remote_datasource.dart';
 import 'package:sistem_kesehatan_flutter/presentation/blocs/auth/auth_bloc.dart';
+import 'package:sistem_kesehatan_flutter/presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/theme.dart';
 import 'package:sistem_kesehatan_flutter/presentation/pages/base/base_page.dart';
 import 'package:sistem_kesehatan_flutter/presentation/pages/setting/setting_page.dart';
 import 'package:sistem_kesehatan_flutter/presentation/pages/setting/user_info_page.dart';
 
-import 'presentation/widgets/default_transition_page.dart';
 import 'presentation/pages/auth/login_page.dart';
 import 'presentation/pages/auth/signup_page.dart';
+import 'presentation/widgets/default_transition_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,8 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: custWhiteColor,
-    statusBarBrightness: Brightness.light, // Untuk iOS, atur menjadi light agar status bar terang
+    statusBarBrightness: Brightness
+        .light, // Untuk iOS, atur menjadi light agar status bar terang
   ));
 }
 
@@ -74,15 +77,18 @@ final _router = GoRouter(
         GoRoute(
           name: 'setting',
           path: 'setting',
-          builder: (BuildContext context, state){
+          builder: (BuildContext context, state) {
             return const SettingPage();
           },
           routes: [
             GoRoute(
               name: 'user_info',
               path: 'user_info',
-              pageBuilder: (BuildContext context, state){
-                return buildPageWithDefaultTransition(context: context, state: state, child: const UserInfoPage());
+              pageBuilder: (BuildContext context, state) {
+                return buildPageWithDefaultTransition(
+                    context: context,
+                    state: state,
+                    child: const UserInfoPage());
               },
             ),
           ],
@@ -99,7 +105,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -110,16 +115,20 @@ class MyApp extends StatelessWidget {
             return authBloc;
           },
         ),
+        BlocProvider(
+          create: (context) => DoctorBloc(DoctorRemoteDatasource())
+            ..add(const DoctorEvent.getDoctors()),
+        )
       ],
       child: MaterialApp.router(
         themeMode: ThemeMode.light,
         title: 'Sistem Klinik App',
         theme: ThemeData(
-            scaffoldBackgroundColor: custWhiteColor,
-            fontFamily: 'Manrope',
-            appBarTheme: const AppBarTheme(
-              systemOverlayStyle: SystemUiOverlayStyle.light,
-            ),
+          scaffoldBackgroundColor: custWhiteColor,
+          fontFamily: 'Manrope',
+          appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle.light,
+          ),
         ),
         routerConfig: _router,
         debugShowCheckedModeBanner: false,

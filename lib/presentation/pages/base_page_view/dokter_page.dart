@@ -1,6 +1,9 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sistem_kesehatan_flutter/domain/entities/doctor.dart';
+import 'package:sistem_kesehatan_flutter/presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
 
 import '../../widgets/base_page_appbar.dart';
@@ -51,7 +54,8 @@ class DokterPage extends StatelessWidget {
 
   String _getRandomizedImagePath() => imagePath[Random().nextInt(7)];
   String _getRandomizedDoctorName() => doctorName[Random().nextInt(7)];
-  String _getRandomizedDoctorSpec() => doctorSpecialization[Random().nextInt(7)];
+  String _getRandomizedDoctorSpec() =>
+      doctorSpecialization[Random().nextInt(7)];
   String _getRandomizedDoctorPhone() => doctorPhoneNum[Random().nextInt(7)];
   // TODO: End of dummy area
 
@@ -73,45 +77,65 @@ class DokterPage extends StatelessWidget {
   }
 
   Widget _cardListView() {
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 20),
-      itemCount: 7,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: (MediaQuery.of(context).size.width - 48) / 2.7,
-          width: double.maxFinite,
-          margin: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: custWhiteColor,
-            boxShadow: [
-              BoxShadow(
-                spreadRadius: 1,
-                blurRadius: 10,
-                offset: const Offset(2, 2),
-                color: custShadowColor,
-              )
-            ],
-          ),
-          child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraint){
-              return Row(
-                children: [
-                  _image(constraint.maxHeight),
-                  Flexible(
-                    fit: FlexFit.tight,
-                    child: _contentCardInfo(),
+    return BlocBuilder<DoctorBloc, DoctorState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          orElse: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          loading: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          success: (doctors) {
+            return ListView.builder(
+              padding: const EdgeInsets.only(top: 20),
+              itemCount: doctors.length,
+              itemBuilder: (BuildContext context, int index) {
+                final doctor = doctors[index];
+                return Container(
+                  height: (MediaQuery.of(context).size.width - 48) / 2.7,
+                  width: double.maxFinite,
+                  margin:
+                      const EdgeInsets.only(left: 24, right: 24, bottom: 24),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: custWhiteColor,
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: 1,
+                        blurRadius: 10,
+                        offset: const Offset(2, 2),
+                        color: custShadowColor,
+                      )
+                    ],
                   ),
-                ],
-              );
-            },
-          ),
+                  child: LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constraint) {
+                      return Row(
+                        children: [
+                          _image(constraint.maxHeight, doctor),
+                          Flexible(
+                            fit: FlexFit.tight,
+                            child: _contentCardInfo(doctor),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                );
+              },
+            );
+          },
         );
       },
     );
   }
-  
-  Widget _image(double size){
+
+  Widget _image(double size, Doctor doctor) {
     double imageSizeWithoutMargin = size - 16;
     return Container(
       height: imageSizeWithoutMargin,
@@ -121,22 +145,27 @@ class DokterPage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
       ),
-      child: SvgPicture.asset(
-        _getRandomizedImagePath(), // TODO: Image goes here
+      child: Image.network(
+        doctor.photo,
         fit: BoxFit.cover,
       ),
     );
   }
 
-  Widget _contentCardInfo(){
+  Widget _contentCardInfo(Doctor doctor) {
     return Padding(
-      padding: const EdgeInsets.only(top: 7, bottom: 7, left: 8, right: 16,),
+      padding: const EdgeInsets.only(
+        top: 7,
+        bottom: 7,
+        left: 8,
+        right: 16,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            _getRandomizedDoctorName(),
+            doctor.name,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextStyle(
@@ -146,14 +175,14 @@ class DokterPage extends StatelessWidget {
             ),
           ),
           Text(
-            _getRandomizedDoctorSpec(),
+            doctor.specialist,
             style: TextStyle(
               fontSize: bodyTextSize,
               color: custGreyColor,
             ),
           ),
           Text(
-            _getRandomizedDoctorPhone(),
+            doctor.phone,
             style: TextStyle(
               fontSize: bodyTextSize,
               color: custBlackColor,

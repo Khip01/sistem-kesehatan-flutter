@@ -136,7 +136,8 @@ class _LoginPageState extends State<LoginPage> {
                         listener: (context, state) {
                           state.maybeWhen(
                             loginSuccess: (data) {
-                              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
                               context.goNamed('base');
                             },
                             error: (message) {

@@ -20,15 +20,16 @@ class BasePageAppbar extends StatelessWidget {
     this.searchActionOnTap,
   });
 
-  String dateTimeDescNow = DateFormat("EEEE, dd MMMM yyyy").format(DateTime.now());
+  String dateTimeDescNow =
+      DateFormat("EEEE, dd MMMM yyyy").format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: 83,
+        height: MediaQuery.of(context).size.height / 7 - 30,
         width: double.maxFinite,
-        padding: const EdgeInsets.only(bottom: 20, top: 12),
+        padding: const EdgeInsets.only(bottom: 18, top: 12),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 29),
           child: Row(
@@ -66,9 +67,7 @@ class BasePageAppbar extends StatelessWidget {
 
   Widget _searchSection() {
     return InkWell(
-      onTap: (){
-
-      },
+      onTap: () {},
       child: Ink(
         height: 40,
         width: 40,
