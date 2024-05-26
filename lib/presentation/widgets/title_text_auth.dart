@@ -17,7 +17,7 @@ class TitleTextAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.maxFinite,
-      height: 53,
+      height: 60,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

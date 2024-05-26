@@ -9,4 +9,4 @@ const String orWith = "Or With";
 const String googleText = "Google";
 
 // Url API
-const String baseUrl = "http://192.168.64.59:8000";
+const String baseUrl = "http://10.0.2.2:8000";

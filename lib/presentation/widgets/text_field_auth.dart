@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../extension/strings.dart';
 import '../extension/theme.dart';
 import '../extension/values.dart';
 
