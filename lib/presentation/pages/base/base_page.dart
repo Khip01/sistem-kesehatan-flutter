@@ -1,7 +1,6 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
 import 'package:sistem_kesehatan_flutter/presentation/pages/base_page_view/dashboard_page.dart';
@@ -52,7 +51,7 @@ class _BasePageState extends State<BasePage> {
 
   int _selectedIndex = 0;
 
-  void _changePageTo(int index){
+  void _changePageTo(int index) {
     _selectedIndex = index;
     basePageController.jumpToPage(index);
   }
@@ -71,11 +70,11 @@ class _BasePageState extends State<BasePage> {
                 _selectedIndex = value;
               }),
               children: [
-                DashboardPage(),
+                const DashboardPage(),
                 PasienPage(),
                 DokterPage(),
-                RekamMedisPage(),
-                TransaksiPage(),
+                const RekamMedisPage(),
+                const TransaksiPage(),
               ],
             ),
           ),
@@ -87,7 +86,7 @@ class _BasePageState extends State<BasePage> {
                 pathIconImage0: navImg0[0],
                 pathIconImage1: navImg1[0],
                 itemTextTitle: "Clinic",
-                onTapAction: (){
+                onTapAction: () {
                   _changePageTo(0);
                 },
               ),
@@ -96,7 +95,7 @@ class _BasePageState extends State<BasePage> {
                 pathIconImage0: navImg0[1],
                 pathIconImage1: navImg1[1],
                 itemTextTitle: "Patient",
-                onTapAction: (){
+                onTapAction: () {
                   _changePageTo(1);
                 },
               ),
@@ -105,7 +104,7 @@ class _BasePageState extends State<BasePage> {
                 pathIconImage0: navImg0[2],
                 pathIconImage1: navImg1[2],
                 itemTextTitle: "Doctor",
-                onTapAction: (){
+                onTapAction: () {
                   _changePageTo(2);
                 },
               ),
@@ -114,7 +113,7 @@ class _BasePageState extends State<BasePage> {
                 pathIconImage0: navImg0[3],
                 pathIconImage1: navImg1[3],
                 itemTextTitle: "Medic",
-                onTapAction: (){
+                onTapAction: () {
                   _changePageTo(3);
                 },
               ),
@@ -123,7 +122,7 @@ class _BasePageState extends State<BasePage> {
                 pathIconImage0: navImg0[4],
                 pathIconImage1: navImg1[4],
                 itemTextTitle: "Transaction",
-                onTapAction: (){
+                onTapAction: () {
                   _changePageTo(4);
                 },
               ),

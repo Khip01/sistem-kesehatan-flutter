@@ -54,13 +54,16 @@ class PasienPage extends StatelessWidget {
     "Female",
   ];
 
-  String _getRandomizedPateientNameMale() => patientNameMale[Random().nextInt(8)];
-  String _getRandomizedPateientNameFemale() => patientNameFemale[Random().nextInt(5)];
-  String _getRandomizedPateientPhoneNum() => patientPhoneNum[Random().nextInt(7)];
-  String _getRandomizedPateientBirthDetail() => patientBirthDetail[Random().nextInt(7)];
+  String _getRandomizedPateientNameMale() =>
+      patientNameMale[Random().nextInt(8)];
+  String _getRandomizedPateientNameFemale() =>
+      patientNameFemale[Random().nextInt(5)];
+  String _getRandomizedPateientPhoneNum() =>
+      patientPhoneNum[Random().nextInt(7)];
+  String _getRandomizedPateientBirthDetail() =>
+      patientBirthDetail[Random().nextInt(7)];
   String _getRandomizedPateientGender() => patientGender[Random().nextInt(2)];
   // TODO: End of dummy area
-
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +104,7 @@ class PasienPage extends StatelessWidget {
             ],
           ),
           child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraint){
+            builder: (BuildContext context, BoxConstraints constraint) {
               return _contentCardInfo();
             },
           ),
@@ -110,7 +113,7 @@ class PasienPage extends StatelessWidget {
     );
   }
 
-  Widget _contentCardInfo(){
+  Widget _contentCardInfo() {
     final String gender = _getRandomizedPateientGender();
 
     return Padding(
@@ -120,7 +123,9 @@ class PasienPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            gender == "Male" ? _getRandomizedPateientNameMale() : _getRandomizedPateientNameFemale(),
+            gender == "Male"
+                ? _getRandomizedPateientNameMale()
+                : _getRandomizedPateientNameFemale(),
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextStyle(
@@ -147,7 +152,8 @@ class PasienPage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                 decoration: BoxDecoration(
                   // TODO: Label Gender Color Decision
                   color: gender == "Male" ? custGenderMale : custGenderFemale,
