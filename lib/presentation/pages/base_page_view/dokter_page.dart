@@ -11,54 +11,6 @@ import '../../widgets/base_page_appbar.dart';
 class DokterPage extends StatelessWidget {
   DokterPage({super.key});
 
-  // TODO: Dummy Area
-  List<String> imagePath = [
-    'assets/card_image_dummy/1.svg',
-    'assets/card_image_dummy/2.svg',
-    'assets/card_image_dummy/3.svg',
-    'assets/card_image_dummy/4.svg',
-    'assets/card_image_dummy/5.svg',
-    'assets/card_image_dummy/6.svg',
-    'assets/card_image_dummy/7.svg',
-  ];
-
-  List<String> doctorName = [
-    "Dr. Terawan Agus Putranto, Sp.Rad(K)",
-    "Dr. Bambang Supriyatno, Sp.A(K)",
-    "Dr. Dante Saksono Harbuwono, Sp.PD-KEMD",
-    "Dr. Aakhif",
-    "Dr. Andhika Rachman, Sp.PD-KHOM",
-    "Dr. Ratna Sitompul, Sp.M(K)",
-    "Dr. Erlina Burhan, MSc, Sp.P(K)",
-  ];
-
-  List<String> doctorSpecialization = [
-    "Radiologi",
-    "Pediatri",
-    "Endokrinologi",
-    "Patologi Klinik",
-    "Hematologi Onkologi Medis",
-    "Oftalmologi",
-    "Pulmonologi",
-  ];
-
-  List<String> doctorPhoneNum = [
-    "+62 812 3456 7890",
-    "+62 813 9876 5432",
-    "+62 815 2345 6789",
-    "+62 816 3456 7891",
-    "+62 817 9876 5433",
-    "+62 818 2345 6780",
-    "+62 819 3456 7892"
-  ];
-
-  String _getRandomizedImagePath() => imagePath[Random().nextInt(7)];
-  String _getRandomizedDoctorName() => doctorName[Random().nextInt(7)];
-  String _getRandomizedDoctorSpec() =>
-      doctorSpecialization[Random().nextInt(7)];
-  String _getRandomizedDoctorPhone() => doctorPhoneNum[Random().nextInt(7)];
-  // TODO: End of dummy area
-
   @override
   Widget build(BuildContext context) {
     return Column(
