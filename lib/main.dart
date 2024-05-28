@@ -6,8 +6,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sistem_kesehatan_flutter/data/datasource/local_datasources/auth_local_datasources.dart';
 import 'package:sistem_kesehatan_flutter/data/datasource/remote_datasources/auth_remote_datasource.dart';
 import 'package:sistem_kesehatan_flutter/data/datasource/remote_datasources/doctor_remote_datasource.dart';
+import 'package:sistem_kesehatan_flutter/data/datasource/remote_datasources/patient_remote_datasource.dart';
 import 'package:sistem_kesehatan_flutter/presentation/blocs/auth/auth_bloc.dart';
 import 'package:sistem_kesehatan_flutter/presentation/blocs/doctor/doctor_bloc.dart';
+import 'package:sistem_kesehatan_flutter/presentation/blocs/patient/patient_bloc.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/theme.dart';
 import 'package:sistem_kesehatan_flutter/presentation/pages/base/base_page.dart';
 import 'package:sistem_kesehatan_flutter/presentation/pages/setting/setting_page.dart';
@@ -118,7 +120,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => DoctorBloc(DoctorRemoteDatasource())
             ..add(const DoctorEvent.getDoctors()),
-        )
+        ),
+        BlocProvider(
+          create: (context) => PatientBloc(PatientRemoteDatasource())
+              ..add(const PatientEvent.getPatients()),
+        ),
       ],
       child: MaterialApp.router(
         themeMode: ThemeMode.light,
