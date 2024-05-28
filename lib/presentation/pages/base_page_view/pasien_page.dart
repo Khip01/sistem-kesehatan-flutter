@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sistem_kesehatan_flutter/domain/entities/patient.dart';
+import 'package:sistem_kesehatan_flutter/presentation/blocs/patient/patient_bloc.dart';
 
 import '../../extension/theme.dart';
 import '../../extension/values.dart';
@@ -83,38 +86,53 @@ class PasienPage extends StatelessWidget {
   }
 
   Widget _cardListView() {
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 20),
-      itemCount: 6,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: (MediaQuery.of(context).size.width - 48) / 3,
-          width: double.maxFinite,
-          margin: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: custWhiteColor,
-            boxShadow: [
-              BoxShadow(
-                spreadRadius: 1,
-                blurRadius: 10,
-                offset: const Offset(2, 2),
-                color: custShadowColor,
-              )
-            ],
-          ),
-          child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraint) {
-              return _contentCardInfo();
-            },
-          ),
+    return BlocBuilder<PatientBloc, PatientState>(
+      builder: (BuildContext context, state) {
+        return state.maybeWhen(
+          orElse: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          loading: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          success: (patients) {
+            return ListView.builder(
+              padding: const EdgeInsets.only(top: 20),
+              itemCount: patients.length,
+              itemBuilder: (BuildContext context, int index) {
+                final patient = patients[index];
+                return Container(
+                  height: (MediaQuery.of(context).size.width - 48) / 3,
+                  width: double.maxFinite,
+                  margin: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: custWhiteColor,
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: 1,
+                        blurRadius: 10,
+                        offset: const Offset(2, 2),
+                        color: custShadowColor,
+                      )
+                    ],
+                  ),
+                  child: _contentCardInfo(patient),
+                );
+              },
+            );
+          }
         );
       },
     );
   }
 
-  Widget _contentCardInfo() {
-    final String gender = _getRandomizedPateientGender();
+  Widget _contentCardInfo(Patient patient) {
+    final String gender = patient.gender;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -123,9 +141,7 @@ class PasienPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            gender == "Male"
-                ? _getRandomizedPateientNameMale()
-                : _getRandomizedPateientNameFemale(),
+            patient.name,
             overflow: TextOverflow.ellipsis,
             maxLines: 2,
             style: TextStyle(
@@ -135,7 +151,7 @@ class PasienPage extends StatelessWidget {
             ),
           ),
           Text(
-            _getRandomizedPateientBirthDetail(),
+            patient.birthDate,
             style: TextStyle(
               fontSize: bodyTextSize,
               color: custGreyColor,
@@ -145,7 +161,7 @@ class PasienPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                _getRandomizedPateientPhoneNum(),
+                patient.phone,
                 style: TextStyle(
                   fontSize: bodyTextSize,
                   color: custBlackColor,
@@ -156,7 +172,7 @@ class PasienPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                 decoration: BoxDecoration(
                   // TODO: Label Gender Color Decision
-                  color: gender == "Male" ? custGenderMale : custGenderFemale,
+                  color: gender == "male" ? custGenderMale : custGenderFemale,
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Center(
