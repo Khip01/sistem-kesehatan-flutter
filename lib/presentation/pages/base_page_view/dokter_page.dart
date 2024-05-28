@@ -6,6 +6,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:sistem_kesehatan_flutter/domain/entities/doctor.dart';
 import 'package:sistem_kesehatan_flutter/presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:sistem_kesehatan_flutter/presentation/extension/extension.dart';
+import 'package:sistem_kesehatan_flutter/presentation/widgets/image_auto_reload.dart';
 
 import '../../widgets/base_page_appbar.dart';
 
@@ -192,9 +193,17 @@ class DokterPage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Image.network(
-        doctor.photo,
-        fit: BoxFit.cover,
+      // child: Image.network(
+      //   doctor.photo,
+      //   fit: BoxFit.cover,
+      // ),
+      child: ImageAutoReload(
+        name: doctor.name,
+        imageUrl: doctor.photo,
+        containerWidth: imageSizeWithoutMargin,
+        containerHeight: imageSizeWithoutMargin,
+        imageFit: BoxFit.cover,
+        containerBorderRadius: BorderRadius.circular(16),
       ),
     );
   }
