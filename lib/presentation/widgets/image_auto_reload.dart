@@ -30,20 +30,11 @@ class _ImageAutoReloadState extends State<ImageAutoReload> {
   // state
   Timer? _reloadTimer;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
   @override
   void dispose() {
     _reloadTimer?.cancel();
     super.dispose();
   }
-
-  // void _loadImage(){
-  //   setState(() {});
-  // }
 
   void _retryLoadImage(){
     _reloadTimer?.cancel();
